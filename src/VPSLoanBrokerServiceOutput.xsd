@@ -1,5 +1,9 @@
-        <xs:schema xmlns:ax26="http://ws.apache.org/axis2/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/vps/xsd">
-           
+        <xs:schema xmlns:ax26="http://ws.apache.org/axis2/xsd"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                   attributeFormDefault="qualified" 
+                   elementFormDefault="qualified"
+                   xmlns:ns="http://inm381/vps"   
+                   targetNamespace="http://inm381/vps">           
             
              <xs:complexType name="LoanProduct">
                 <xs:sequence>
@@ -15,21 +19,21 @@
             <xs:element name="GetAllLoansResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax26:LoanProduct"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ns:LoanProduct"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
             <xs:element name="FindLoansByUserProfile">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="userProfile" nillable="true" type="ax26:UserProfile"/>
+                        <xs:element minOccurs="0" name="userProfile" nillable="true" type="ns:UserProfile"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
             <xs:element name="FindLoansByUserProfileResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax26:LoanSearchResult"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:LoanSearchResult"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -39,7 +43,7 @@
                 <xs:sequence>
                     <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
                     <xs:element minOccurs="0" name="userProfileID" type="xs:int"/>
-                    <xs:element minOccurs="0" name="vehicleOfInterest" nillable="true" type="ax25:Vehicle"/>
+                    <xs:element minOccurs="0" name="vehicleOfInterest" nillable="true" type="ns:Vehicle"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="Vehicle">
@@ -55,7 +59,7 @@
             </xs:complexType>
             <xs:complexType name="LoanSearchResult">
                 <xs:sequence>
-                    <xs:element maxOccurs="unbounded" minOccurs="0" name="loanProductsFound" nillable="true" type="ax25:LoanProduct"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="loanProductsFound" nillable="true" type="ns:LoanProduct"/>
                     <xs:element minOccurs="0" name="loanSearchID" type="xs:int"/>
                 </xs:sequence>
             </xs:complexType>

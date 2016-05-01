@@ -1,42 +1,44 @@
-        <xs:schema xmlns:ax28="http://ws.apache.org/axis2/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/vps/xsd">
-            <xs:import namespace="http://ws.apache.org/axis2/xsd"/>
+        <xs:schema xmlns:ax28="http://ws.apache.org/axis2/xsd"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   attributeFormDefault="qualified" 
+                   elementFormDefault="qualified"                   
+                    xmlns:ns="http://inm381/vps"   
+                   targetNamespace="http://inm381/vps">            
             <xs:element name="SubmitOffer">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="newOffer" nillable="true" type="ax28:Offer"/>
+                        <xs:element minOccurs="0" name="newOffer" nillable="true" type="ns:Offer"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
             <xs:element name="SubmitOfferResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax28:Offer"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:Offer"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
             <xs:element name="GetAllSavedLoanSearchResultsResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax28:Offer"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ns:Offer"/>
                     </xs:sequence>
                 </xs:complexType>
-            </xs:element>
-        </xs:schema>
-        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.apache.org/axis2/xsd">
+            </xs:element>       
             <xs:complexType name="Offer">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="isAccepted" nillable="true" type="xs:boolean"/>
                     <xs:element minOccurs="0" name="offerAmount" nillable="true" type="xs:double"/>
                     <xs:element minOccurs="0" name="offerID" type="xs:int"/>
-                    <xs:element minOccurs="0" name="userProfile" nillable="true" type="ax27:UserProfile"/>
-                    <xs:element minOccurs="0" name="vehicle" nillable="true" type="ax27:Vehicle"/>
+                    <xs:element minOccurs="0" name="userProfile" nillable="true" type="ns:UserProfile"/>
+                    <xs:element minOccurs="0" name="vehicle" nillable="true" type="ns:Vehicle"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="UserProfile">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
                     <xs:element minOccurs="0" name="userProfileID" type="xs:int"/>
-                    <xs:element minOccurs="0" name="vehicleOfInterest" nillable="true" type="ax27:Vehicle"/>
+                    <xs:element minOccurs="0" name="vehicleOfInterest" nillable="true" type="ns:Vehicle"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="Vehicle">

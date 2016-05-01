@@ -1,5 +1,8 @@
-        <xs:schema xmlns:ax22="http://ws.apache.org/axis2/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/vps/xsd">
-            <xs:import namespace="http://ws.apache.org/axis2/xsd"/>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   attributeFormDefault="qualified" 
+                   elementFormDefault="qualified"
+                  xmlns:ns="http://inm381/vps" 
+                   targetNamespace="http://inm381/vps">                    
             <xs:element name="getAllVehiclesByMake">
                 <xs:complexType>
                     <xs:sequence>
@@ -10,7 +13,7 @@
             <xs:element name="getAllVehiclesByMakeResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:VPSSearchResult"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:VPSSearchResult"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -24,7 +27,7 @@
             <xs:element name="getAllVehiclesByMileageResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:VPSSearchResult"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:VPSSearchResult"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -38,7 +41,7 @@
             <xs:element name="getAllVehiclesByModelResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:VPSSearchResult"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:VPSSearchResult"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -53,7 +56,7 @@
             <xs:element name="getAllVehiclesByPriceRangeResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:VPSSearchResult"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:VPSSearchResult"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -67,7 +70,7 @@
             <xs:element name="getAllVehiclesByRegYearResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="ax22:VPSSearchResult"/>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:VPSSearchResult"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -81,7 +84,7 @@
             <xs:element name="getAllVehiclesResponse">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:Vehicle"/>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ns:Vehicle"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
@@ -126,13 +129,11 @@
                         <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
                     </xs:sequence>
                 </xs:complexType>
-            </xs:element>
-        </xs:schema>
-        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.apache.org/axis2/xsd">
+            </xs:element>        
             <xs:complexType name="VPSSearchResult">
                 <xs:sequence>
                     <xs:element minOccurs="0" name="iD" type="xs:int"/>
-                    <xs:element maxOccurs="unbounded" minOccurs="0" name="searchResult" nillable="true" type="ax21:Vehicle"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="searchResult" nillable="true" type="ns:Vehicle"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="Vehicle">
