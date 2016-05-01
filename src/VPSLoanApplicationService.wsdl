@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://inm381/vps" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://inm381/vps/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax23="http://ws.apache.org/axis2/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://inm381/vps">
+    <wsdl:documentation>VPSLoanApplicationService</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns:ax24="http://ws.apache.org/axis2/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/vps/xsd">
+            <xs:import namespace="http://ws.apache.org/axis2/xsd"/>
+            <xs:element name="SubmitLoanApplication">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loanApplication" nillable="true" type="ax24:LoanApplication"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SubmitLoanApplicationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ax24:LoanApplication"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetAllSavedLoanSearchResultsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax24:LoanSearchResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetSavedLoanSearchResult">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="searchResult" nillable="true" type="ax24:LoanSearchResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetSavedLoanSearchResultResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SaveLoanSearchResult">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="searchResult" nillable="true" type="ax24:LoanSearchResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SaveLoanSearchResultResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.apache.org/axis2/xsd">
+            <xs:complexType name="LoanApplication">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="isApproved" nillable="true" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="loanApplicationID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="loanProduct" nillable="true" type="ax23:LoanProduct"/>
+                    <xs:element minOccurs="0" name="userProfile" nillable="true" type="ax23:UserProfile"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoanProduct">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="apr" type="xs:double"/>
+                    <xs:element minOccurs="0" name="lender" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="loanID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="maxAmount" type="xs:double"/>
+                    <xs:element minOccurs="0" name="minAount" type="xs:double"/>
+                    <xs:element minOccurs="0" name="monthlyRepayment" type="xs:double"/>
+                    <xs:element minOccurs="0" name="periodofLoan" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UserProfile">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userProfileID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vehicleOfInterest" nillable="true" type="ax23:Vehicle"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Vehicle">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="isSold" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="make" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="mileage" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="model" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="regyear" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="vehicleID" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoanSearchResult">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="loanProductsFound" nillable="true" type="ax23:LoanProduct"/>
+                    <xs:element minOccurs="0" name="loanSearchID" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="GetAllSavedLoanSearchResultsRequest"/>
+    <wsdl:message name="GetAllSavedLoanSearchResultsResponse">
+        <wsdl:part name="parameters" element="ns:GetAllSavedLoanSearchResultsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SubmitLoanApplicationRequest">
+        <wsdl:part name="parameters" element="ns:SubmitLoanApplication"/>
+    </wsdl:message>
+    <wsdl:message name="SubmitLoanApplicationResponse">
+        <wsdl:part name="parameters" element="ns:SubmitLoanApplicationResponse"/>
+    </wsdl:message>
+    <wsdl:message name="GetSavedLoanSearchResultRequest">
+        <wsdl:part name="parameters" element="ns:GetSavedLoanSearchResult"/>
+    </wsdl:message>
+    <wsdl:message name="GetSavedLoanSearchResultResponse">
+        <wsdl:part name="parameters" element="ns:GetSavedLoanSearchResultResponse"/>
+    </wsdl:message>
+    <wsdl:message name="SaveLoanSearchResultRequest">
+        <wsdl:part name="parameters" element="ns:SaveLoanSearchResult"/>
+    </wsdl:message>
+    <wsdl:message name="SaveLoanSearchResultResponse">
+        <wsdl:part name="parameters" element="ns:SaveLoanSearchResultResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="VPSLoanApplicationServicePortType">
+        <wsdl:operation name="GetAllSavedLoanSearchResults">
+            <wsdl:input message="axis2:GetAllSavedLoanSearchResultsRequest" wsaw:Action="urn:GetAllSavedLoanSearchResults"/>
+            <wsdl:output message="axis2:GetAllSavedLoanSearchResultsResponse" wsaw:Action="urn:GetAllSavedLoanSearchResultsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="SubmitLoanApplication">
+            <wsdl:input message="axis2:SubmitLoanApplicationRequest" wsaw:Action="urn:SubmitLoanApplication"/>
+            <wsdl:output message="axis2:SubmitLoanApplicationResponse" wsaw:Action="urn:SubmitLoanApplicationResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetSavedLoanSearchResult">
+            <wsdl:input message="axis2:GetSavedLoanSearchResultRequest" wsaw:Action="urn:GetSavedLoanSearchResult"/>
+            <wsdl:output message="axis2:GetSavedLoanSearchResultResponse" wsaw:Action="urn:GetSavedLoanSearchResultResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="SaveLoanSearchResult">
+            <wsdl:input message="axis2:SaveLoanSearchResultRequest" wsaw:Action="urn:SaveLoanSearchResult"/>
+            <wsdl:output message="axis2:SaveLoanSearchResultResponse" wsaw:Action="urn:SaveLoanSearchResultResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="VPSLoanApplicationServiceSoap11Binding" type="axis2:VPSLoanApplicationServicePortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="GetAllSavedLoanSearchResults">
+            <soap:operation soapAction="urn:GetAllSavedLoanSearchResults" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SubmitLoanApplication">
+            <soap:operation soapAction="urn:SubmitLoanApplication" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSavedLoanSearchResult">
+            <soap:operation soapAction="urn:GetSavedLoanSearchResult" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SaveLoanSearchResult">
+            <soap:operation soapAction="urn:SaveLoanSearchResult" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="VPSLoanApplicationService">
+        <wsdl:port name="VPSLoanApplicationServiceHttpSoap11Endpoint" binding="axis2:VPSLoanApplicationServiceSoap11Binding">
+            <soap:address location="http://10.0.2.15:8888/axis2/services/VPSLoanApplicationService.VPSLoanApplicationServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
