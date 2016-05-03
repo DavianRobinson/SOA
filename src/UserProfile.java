@@ -10,10 +10,11 @@ import java.util.Random;
  *
  * @author INM381-User
  */
-public class UserProfile {
+public class UserProfile implements java.io.Serializable{
     private int _userProfileID;
     private String _userName;
     private Vehicle _vehicleOfInterest;   
+    private static final long serialVersionUID = 7808L;
 
     public UserProfile() {
          Random rand = new Random();

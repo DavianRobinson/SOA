@@ -10,7 +10,7 @@ import java.util.Random;
  *
  * @author INM381-User
  */
-public class LoanProduct {
+public class LoanProduct implements java.io.Serializable{
     
     private int _loanID;
     private String _lender;
@@ -19,6 +19,7 @@ public class LoanProduct {
     private double _apr;
     private int _periodofLoan;
     private double _monthlyRepayment;
+    private static final long serialVersionUID = 7802L;
 
     public LoanProduct() {
          Random rand = new Random();

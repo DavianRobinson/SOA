@@ -10,12 +10,13 @@ import java.util.Random;
  *
  * @author INM381-User
  */
-public class Offer {
+public class Offer implements java.io.Serializable{
     private int _OfferID;
     private UserProfile _userProfile;
     private Vehicle _vehicle;
     private Double _offerAmount;
     private Boolean  _isAccepted;    
+    private static final long serialVersionUID = 7806L;
 
     public Offer() {
          Random rand = new Random();

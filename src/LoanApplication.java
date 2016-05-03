@@ -10,12 +10,13 @@ import java.util.Random;
  *
  * @author INM381-User
  */
-public class LoanApplication {
+public class LoanApplication implements java.io.Serializable{
     
     private int _loanApplicationID;
     private UserProfile _userProfile;
     private LoanProduct _loanProduct;
     private Boolean _isApproved;
+    private static final long serialVersionUID = 7800L;
 
     public LoanApplication() {
          Random rand = new Random();

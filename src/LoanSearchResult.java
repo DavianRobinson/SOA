@@ -10,9 +10,10 @@ import java.util.Random;
  *
  * @author INM381-User
  */
-public class LoanSearchResult {
+public class LoanSearchResult implements java.io.Serializable{
     private int _loanSearchID;
     private LoanProduct[] _loanProductsFound;
+    private static final long serialVersionUID = 7804L;
 
     public LoanSearchResult() {
         Random rand = new Random();
