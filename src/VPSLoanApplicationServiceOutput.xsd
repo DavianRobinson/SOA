@@ -1,0 +1,99 @@
+  <xs:schema xmlns:ax24="http://ws.apache.org/axis2/xsd" 
+             xmlns:xs="http://www.w3.org/2001/XMLSchema"
+             attributeFormDefault="qualified" 
+             elementFormDefault="qualified" 
+              xmlns:ns="http://inm381/vps"   
+                   targetNamespace="http://inm381/vps">          
+            <xs:element name="SubmitLoanApplication">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="loanApplication" nillable="true" type="ns:LoanApplication"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SubmitLoanApplicationResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="ns:LoanApplication"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetAllSavedLoanSearchResultsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ns:LoanSearchResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetSavedLoanSearchResult">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="searchResult" nillable="true" type="ns:LoanSearchResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetSavedLoanSearchResultResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SaveLoanSearchResult">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="searchResult" nillable="true" type="ns:LoanSearchResult"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="SaveLoanSearchResultResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>        
+            <xs:complexType name="LoanApplication">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="isApproved" nillable="true" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="loanApplicationID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="loanProduct" nillable="true" type="ns:LoanProduct"/>
+                    <xs:element minOccurs="0" name="userProfile" nillable="true" type="ns:UserProfile"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoanProduct">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="apr" type="xs:double"/>
+                    <xs:element minOccurs="0" name="lender" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="loanID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="maxAmount" type="xs:double"/>
+                    <xs:element minOccurs="0" name="minAount" type="xs:double"/>
+                    <xs:element minOccurs="0" name="monthlyRepayment" type="xs:double"/>
+                    <xs:element minOccurs="0" name="periodofLoan" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="UserProfile">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="userProfileID" type="xs:int"/>
+                    <xs:element minOccurs="0" name="vehicleOfInterest" nillable="true" type="ns:Vehicle"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Vehicle">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="isSold" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="make" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="mileage" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="model" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="price" nillable="true" type="xs:double"/>
+                    <xs:element minOccurs="0" name="regyear" nillable="true" type="xs:string"/>
+                    <xs:element minOccurs="0" name="vehicleID" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="LoanSearchResult">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="loanProductsFound" nillable="true" type="ns:LoanProduct"/>
+                    <xs:element minOccurs="0" name="loanSearchID" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>

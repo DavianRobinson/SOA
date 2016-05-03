@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://inm381/vps" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://inm381/vps/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax21="http://ws.apache.org/axis2/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://inm381/vps">
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:axis2="http://inm381/vps" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:ns="http://inm381/vps/xsd" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ax21="http://ws.apache.org/axis2/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://inm381/vps">
     <wsdl:documentation>VPSearchService</wsdl:documentation>
     <wsdl:types>
         <xs:schema xmlns:ax22="http://ws.apache.org/axis2/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://inm381/vps/xsd">
@@ -89,14 +89,14 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="SaveSearchResult">
+            <xs:element name="SaveSearchResultByID">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element minOccurs="0" name="searchResultID" type="xs:int"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="SaveSearchResultResponse">
+            <xs:element name="SaveSearchResultByIDResponse">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element minOccurs="0" name="return" type="xs:boolean"/>
@@ -135,12 +135,13 @@
         <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws.apache.org/axis2/xsd">
             <xs:complexType name="VPSSearchResult">
                 <xs:sequence>
-                    <xs:element minOccurs="0" name="iD" type="xs:int"/>
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="searchResult" nillable="true" type="ax21:Vehicle"/>
+                    <xs:element minOccurs="0" name="vpsSearchResultID" type="xs:int"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="Vehicle">
                 <xs:sequence>
+                    <xs:element minOccurs="0" name="isSold" type="xs:boolean"/>
                     <xs:element minOccurs="0" name="make" nillable="true" type="xs:string"/>
                     <xs:element minOccurs="0" name="mileage" nillable="true" type="xs:string"/>
                     <xs:element minOccurs="0" name="model" nillable="true" type="xs:string"/>
@@ -181,11 +182,11 @@
     <wsdl:message name="getAllVehiclesByPriceRangeResponse">
         <wsdl:part name="parameters" element="ns:getAllVehiclesByPriceRangeResponse"/>
     </wsdl:message>
-    <wsdl:message name="SaveSearchResultRequest">
-        <wsdl:part name="parameters" element="ns:SaveSearchResult"/>
+    <wsdl:message name="SaveSearchResultByIDRequest">
+        <wsdl:part name="parameters" element="ns:SaveSearchResultByID"/>
     </wsdl:message>
-    <wsdl:message name="SaveSearchResultResponse">
-        <wsdl:part name="parameters" element="ns:SaveSearchResultResponse"/>
+    <wsdl:message name="SaveSearchResultByIDResponse">
+        <wsdl:part name="parameters" element="ns:SaveSearchResultByIDResponse"/>
     </wsdl:message>
     <wsdl:message name="getAllVehiclesByMileageRequest">
         <wsdl:part name="parameters" element="ns:getAllVehiclesByMileage"/>
@@ -226,9 +227,9 @@
             <wsdl:input message="axis2:getAllVehiclesByPriceRangeRequest" wsaw:Action="urn:getAllVehiclesByPriceRange"/>
             <wsdl:output message="axis2:getAllVehiclesByPriceRangeResponse" wsaw:Action="urn:getAllVehiclesByPriceRangeResponse"/>
         </wsdl:operation>
-        <wsdl:operation name="SaveSearchResult">
-            <wsdl:input message="axis2:SaveSearchResultRequest" wsaw:Action="urn:SaveSearchResult"/>
-            <wsdl:output message="axis2:SaveSearchResultResponse" wsaw:Action="urn:SaveSearchResultResponse"/>
+        <wsdl:operation name="SaveSearchResultByID">
+            <wsdl:input message="axis2:SaveSearchResultByIDRequest" wsaw:Action="urn:SaveSearchResultByID"/>
+            <wsdl:output message="axis2:SaveSearchResultByIDResponse" wsaw:Action="urn:SaveSearchResultByIDResponse"/>
         </wsdl:operation>
         <wsdl:operation name="getAllVehiclesByMileage">
             <wsdl:input message="axis2:getAllVehiclesByMileageRequest" wsaw:Action="urn:getAllVehiclesByMileage"/>
@@ -290,8 +291,8 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="SaveSearchResult">
-            <soap:operation soapAction="urn:SaveSearchResult" style="document"/>
+        <wsdl:operation name="SaveSearchResultByID">
+            <soap:operation soapAction="urn:SaveSearchResultByID" style="document"/>
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
@@ -327,9 +328,183 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
+    <wsdl:binding name="VPSearchServiceSoap12Binding" type="axis2:VPSearchServicePortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getVehicles">
+            <soap12:operation soapAction="urn:getVehicles" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByMake">
+            <soap12:operation soapAction="urn:getAllVehiclesByMake" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByModel">
+            <soap12:operation soapAction="urn:getAllVehiclesByModel" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByPriceRange">
+            <soap12:operation soapAction="urn:getAllVehiclesByPriceRange" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByRegYear">
+            <soap12:operation soapAction="urn:getAllVehiclesByRegYear" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SaveSearchResultByID">
+            <soap12:operation soapAction="urn:SaveSearchResultByID" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByMileage">
+            <soap12:operation soapAction="urn:getAllVehiclesByMileage" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sayHello">
+            <soap12:operation soapAction="urn:sayHello" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehicles">
+            <soap12:operation soapAction="urn:getAllVehicles" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="VPSearchServiceHttpBinding" type="axis2:VPSearchServicePortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="getVehicles">
+            <http:operation location="VPSearchService/getVehicles"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getVehicles"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getVehicles"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByMake">
+            <http:operation location="VPSearchService/getAllVehiclesByMake"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAllVehiclesByMake"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAllVehiclesByMake"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByModel">
+            <http:operation location="VPSearchService/getAllVehiclesByModel"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAllVehiclesByModel"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAllVehiclesByModel"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByPriceRange">
+            <http:operation location="VPSearchService/getAllVehiclesByPriceRange"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAllVehiclesByPriceRange"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAllVehiclesByPriceRange"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByRegYear">
+            <http:operation location="VPSearchService/getAllVehiclesByRegYear"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAllVehiclesByRegYear"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAllVehiclesByRegYear"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SaveSearchResultByID">
+            <http:operation location="VPSearchService/SaveSearchResultByID"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="SaveSearchResultByID"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="SaveSearchResultByID"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehiclesByMileage">
+            <http:operation location="VPSearchService/getAllVehiclesByMileage"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAllVehiclesByMileage"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAllVehiclesByMileage"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="sayHello">
+            <http:operation location="VPSearchService/sayHello"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="sayHello"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="sayHello"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getAllVehicles">
+            <http:operation location="VPSearchService/getAllVehicles"/>
+            <wsdl:input>
+                <mime:content type="text/xml" part="getAllVehicles"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="text/xml" part="getAllVehicles"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
     <wsdl:service name="VPSearchService">
         <wsdl:port name="VPSearchServiceHttpSoap11Endpoint" binding="axis2:VPSearchServiceSoap11Binding">
             <soap:address location="http://10.0.2.15:8888/axis2/services/VPSearchService.VPSearchServiceHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="VPSearchServiceHttpSoap12Endpoint" binding="axis2:VPSearchServiceSoap12Binding">
+            <soap12:address location="http://10.0.2.15:8888/axis2/services/VPSearchService.VPSearchServiceHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="VPSearchServiceHttpEndpoint" binding="axis2:VPSearchServiceHttpBinding">
+            <http:address location="http://localhost:8888/axis2/services/VPSearchService.VPSearchServiceHttpEndpoint/"/>
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

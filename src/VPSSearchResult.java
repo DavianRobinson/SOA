@@ -1,4 +1,5 @@
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Random;
 
@@ -11,10 +12,11 @@ import java.util.Random;
  *
  * @author INM381-User
  */
-public class VPSSearchResult {
+public class VPSSearchResult implements Serializable {
     
     private int _vpsSearchResultID;
     private Vehicle[] searchResult;
+    private static final long serialVersionUID = 742L;
 
     public VPSSearchResult() {
         Random rand = new Random();

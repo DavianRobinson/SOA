@@ -1,6 +1,6 @@
 
 
-public class Vehicle {
+public class Vehicle implements java.io.Serializable{
     
    private int _vehicleID;
    private String _make;
@@ -8,18 +8,27 @@ public class Vehicle {
    private String _regyear;
    private String _mileage;
    private Double  _price;
-   private boolean isSold;
+   private boolean _isSold;
+   private static final long serialVersionUID = 7526472295622776147L;
+   
     public Vehicle() {
+        this._mileage = "";
+        this._price = 0.00;
+        this._model = "";
+        this._make = "";
+        this._regyear = "";
+        this._isSold = false;
     }
      
    
 
-    public Vehicle(String _make,String _model,String _regyear,String _mileage,Double _price) {
+    public Vehicle(String _make,String _model,String _regyear,String _mileage,Double _price, boolean isSold) {
         this._mileage = _mileage;
         this._price = _price;
         this._model = _model;
         this._make = _make;
         this._regyear = _regyear;
+        this._isSold = isSold;
         
     }
 
@@ -95,16 +104,18 @@ public class Vehicle {
     /**
      * @return the isSold
      */
-    public boolean isIsSold() {
-        return isSold;
+    public boolean getIsSold() {
+        return _isSold;
     }
 
     /**
      * @param isSold the isSold to set
      */
     public void setIsSold(boolean isSold) {
-        this.isSold = isSold;
+        this._isSold = isSold;
     }
+
+   
    
    
    
