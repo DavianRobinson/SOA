@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8888/axis2/services/VPSearchService?wsdl" uri="src/localhost_8888/axis2/services/VPSearchService.wsdl"/>
+    <nextCatalog catalog="nbproject/private/retriever/catalog.xml"/>
+</catalog>
