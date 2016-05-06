@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <m:newWSDLOperationResponse xmlns:m="http://j2ee.netbeans.org/wsdl/vpsBpelModule/src/newWSDL">
+      <searchResult>
+        <getAllVehiclesByMakeResponse xmlns="http://ws.apache.org/axis2/xsd">
+          <return>
+            <searchResult xmlns:ax21="http://ws.apache.org/axis2/xsd" xmlns:msgns="http://inm381/vps" xmlns:ns="http://inm381/vps/xsd" xmlns:ns0="http://j2ee.netbeans.org/wsdl/vpsBpelModule/src/newWSDL" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" type="Vehicle">
+              <ax21:isSold>false</ax21:isSold>
+              <ax21:make/>
+              <ax21:mileage/>
+              <ax21:model/>
+              <ax21:price>0.0</ax21:price>
+              <ax21:regyear/>
+              <ax21:vehicleID>0</ax21:vehicleID>
+            </searchResult>
+            <searchResult xmlns:ax21="http://ws.apache.org/axis2/xsd" xmlns:msgns="http://inm381/vps" xmlns:ns="http://inm381/vps/xsd" xmlns:ns0="http://j2ee.netbeans.org/wsdl/vpsBpelModule/src/newWSDL" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" type="Vehicle">
+              <ax21:isSold>false</ax21:isSold>
+              <ax21:make>BMW</ax21:make>
+              <ax21:mileage>20000</ax21:mileage>
+              <ax21:model>325</ax21:model>
+              <ax21:price>6000.0</ax21:price>
+              <ax21:regyear>02/02/2014</ax21:regyear>
+              <ax21:vehicleID>2</ax21:vehicleID>
+            </searchResult>
+            <searchResult xmlns:ax21="http://ws.apache.org/axis2/xsd" xmlns:msgns="http://inm381/vps" xmlns:ns="http://inm381/vps/xsd" xmlns:ns0="http://j2ee.netbeans.org/wsdl/vpsBpelModule/src/newWSDL" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" type="Vehicle">
+              <ax21:isSold>false</ax21:isSold>
+              <ax21:make/>
+              <ax21:mileage/>
+              <ax21:model/>
+              <ax21:price>0.0</ax21:price>
+              <ax21:regyear/>
+              <ax21:vehicleID>0</ax21:vehicleID>
+            </searchResult>
+            <vpsSearchResultID>48</vpsSearchResultID>
+          </return>
+        </getAllVehiclesByMakeResponse>
+      </searchResult>
+    </m:newWSDLOperationResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
